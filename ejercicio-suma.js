@@ -22,8 +22,38 @@ const findSumIndices = (a = [],t = null) => {
   return 'There is no available solution';
 }
 
-const t = 12;
-const a = [3,5,2,7,6]
-const res = findSumIndices(a, t);
+/**
+ * Finds 2 indices in a that sums t - O(n)
+ * @param {Array} a - no Array type definition for jsDocs 
+ * @param {number} t 
+ * @returns {string}
+ */
+const optimizedFindSumIndices = (a = [],t = null) => {
+  if (!t || a.length === 0) return 'Provide valid arguments';
+  let i = 0;
+  while (a.length > 1 && i <= a.length) {
+    if (a[0] + a[i] === t) {
+      return `
+        First pair of array items that sum ${t} are:
+        a[${0}] = ${a[0]}
+        a[${i}] = ${a[i]};
+      `
+    } else {
+      i++;
+    }
+    if (i === a.length) {
+      i = 0;
+      a.shift();
+    }
+  }
+  return 'There is no available solution';
+}
 
+const t = 11;
+const a = [9,5,2,7,6];
+
+const res = findSumIndices(a, t);
+const resOpt = optimizedFindSumIndices(a, t);
+
+console.log(resOpt);
 console.log(res);
