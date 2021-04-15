@@ -4,7 +4,7 @@
  * @param {number} t 
  * @returns {string}
  */
-const findSumIndices = (a = [],t = null) => {
+const findSumIndices01 = (a = [],t = null) => {
   if (!t || a.length === 0) return 'Provide valid arguments';
   // Because of the 2 nested loops, runtime is O(n^2/2).
   // Dropping non dominant terms O(n^2) 
@@ -28,7 +28,7 @@ const findSumIndices = (a = [],t = null) => {
  * @param {number} t 
  * @returns {string}
  */
-const optimizedFindSumIndices = (a = [],t = null) => {
+const findSumIndices02 = (a = [],t = null) => {
   if (!t || a.length === 0) return 'Provide valid arguments';
   let i = 0;
   while (a.length > 1 && i <= a.length) {
@@ -49,11 +49,33 @@ const optimizedFindSumIndices = (a = [],t = null) => {
   return 'There is no available solution';
 }
 
-const t = 11;
-const a = [9,5,2,7,6];
+/**
+ * Finds 2 indices in a that sums t - O(n)
+ * @param {Array} a - no Array type definition for jsDocs 
+ * @param {number} t 
+ * @returns {string}
+ */
+const findSumIndices03 = (a = [],t = null) => {
+  const m = new Map();
+  for (let i = 0; i < a.length; i++) {
+    m.set(a[i], i);
+  }
 
-const res = findSumIndices(a, t);
-const resOpt = optimizedFindSumIndices(a, t);
+  for (let i = 0; i < a.length; i++) {
+    const c = t - a[i];
+    const mv = m.get(c);
+    if (mv && c !== a[i]) {
+      return `
+        First pair of array items that sum ${t} are:
+        a[${i}] = ${a[i]}
+        a[${mv}] = ${a[mv]};
+      `
+    }
+  }
+}
 
-console.log(resOpt);
+const t = 12;
+const a = [3,6,8,2,4,1];
+
+const res = findSumIndices03(a, t);
 console.log(res);
