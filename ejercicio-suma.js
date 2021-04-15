@@ -56,21 +56,18 @@ const findSumIndices02 = (a = [],t = null) => {
  * @returns {string}
  */
 const findSumIndices03 = (a = [],t = null) => {
-  const m = new Map();
-  for (let i = 0; i < a.length; i++) {
-    m.set(a[i], i);
-  }
-
+  const m = new Map();  
   for (let i = 0; i < a.length; i++) {
     const c = t - a[i];
     const mv = m.get(c);
     if (mv && c !== a[i]) {
       return `
-        First pair of array items that sum ${t} are:
-        a[${i}] = ${a[i]}
-        a[${mv}] = ${a[mv]};
+      First pair of array items that sum ${t} are:
+      a[${i}] = ${a[i]}
+      a[${mv}] = ${a[mv]};
       `
     }
+    m.set(a[i], i);
   }
 }
 
