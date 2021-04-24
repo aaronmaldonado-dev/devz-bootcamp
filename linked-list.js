@@ -11,11 +11,6 @@ class LinkedList {
     this.tail = null;
     this.size = 0;
   }
-  /**
-   * @todo needs tail implementation
-   * @param {*} value 
-   * @returns {Node}
-   */
   prepend (value) {
     this.size ++;
     const node = new Node(value, this.head);
