@@ -31,7 +31,7 @@ class LinkedList {
     this.tail = node;
     return this;
   }
-  fromArray(arr) {
+  fromArray(arr = []) {
     for (let i = 0; i < arr.length; i++) {
       this.append(arr[i]);
     }
@@ -61,23 +61,77 @@ class LinkedList {
     }
     return this;
   }
+  getNodeFrom (k) {
+    if (k < 0 || k > this.size) return 'Argumento no valido';
+    const sp = this.size - k;
+    let current = this.head;
+    let ct = 1;
+    while (current) {
+      if (sp === ct) return current.value;
+      current = current.next;
+      ct ++;
+    }
+  }
+  static listSum (list01, list02) {
+    if (!list01 || !list02) return 'No es posible una solución';
+    let current01 = list01.head;
+    let current02 = list02.head;
+    let res = new LinkedList();
+    let llevamos = 0;
+    while (current01 || current02) {
+      const sum = Number(current01.value + current02.value);
+      res.append((sum % 10) + llevamos);
+      llevamos = Math.floor(sum/10);
+      current01 = current01.next;
+      current02 = current02.next;
+    }
+    return res;
+  }
 }
 
+const arr = [1,2,3,4,5,6,7,8,9];
 const list = new LinkedList();
+list.fromArray(arr);
 
-let n;
-n = list.append(1);
-n = list.append(5);
-n = list.append(80);
-n = list.append(60);
-n = list.append(5);
-n = list.append(1);
-n = list.append(2);
+const val = list.getNodeFrom(5);
+console.log(val);
 
-list.removeDuplicates();
+////////////////////////////////////////////////////////////////////////////////
 
-const a = list.toArray();
-console.log(a);
+// const list01 = new LinkedList();
+// const list02 = new LinkedList();
+
+// const arr01 = [6,3,1];
+// const arr02 = [6,0,3];
+
+// list01.fromArray(arr01);
+// list02.fromArray(arr02);
+
+// const result = LinkedList.listSum(list01, list02);
+// let current = result.head;
+
+// while (current) {
+//   console.log(current.value);
+//   current = current.next;
+// }
+
+////////////////////////////////////////////////////////////////////////////////
+
+// const list = new LinkedList();
+
+// let n;
+// n = list.append(1);
+// n = list.append(5);
+// n = list.append(80);
+// n = list.append(60);
+// n = list.append(5);
+// n = list.append(1);
+// n = list.append(2);
+
+// list.removeDuplicates();
+
+// const a = list.toArray();
+// console.log(a);
 
 // const arrayList = new LinkedList();
 // const arr = [3,2,1,3,4,5];
@@ -89,3 +143,4 @@ console.log(a);
 //   console.log(current.value);
 //   current = current.next;
 // }
+
