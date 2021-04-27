@@ -12,6 +12,7 @@ class Node {
 class Stack {
   constructor () {
     this.top = null;
+    this.min = null;
     this.size = 0;
   } 
   pop () {
@@ -22,15 +23,23 @@ class Stack {
   } 
   push (data) {
     this.size ++;
+    data = Number(data);
     const node = new Node(data);
     node.prev = this.top;
-    this.top = node; 
+    this.top = node;
+    this.setMin(data);
   }
   peek ()  {
     return this.top;
   }
   isEmpty () {
     if (!this.top) return true;
+  }
+  getMin () {
+    return this.min || null;
+  }
+  setMin (data) {
+    if (!this.min || data < this.min) this.min = data;
   }
   toArray () {
     let current = this.top;
@@ -83,21 +92,22 @@ class Queue {
 }
 
 // Stack
-// const stack = new Stack();
-// stack.push(5);
-// stack.push(4);
-// stack.push(3);
-// stack.push(2);
-// stack.push(1);
-// const stackArray = stack.toArray();
-// console.log(stackArray);
+const stack = new Stack();
+stack.push(5);
+stack.push(4);
+stack.push(3);
+stack.push(2);
+stack.push(1);
+const stackArray = stack.toArray();
+const min = stack.getMin();
+console.log(min);
 
 // Queue
-const queue = new Queue();
-queue.add(5);
-queue.add(4);
-queue.add(3);
-queue.add(2);
-queue.add(1);
-const queueArray = queue.toArray();
-console.log(queueArray);
+// const queue = new Queue();
+// queue.add(5);
+// queue.add(4);
+// queue.add(3);
+// queue.add(2);
+// queue.add(1);
+// const queueArray = queue.toArray();
+// console.log(queueArray);
