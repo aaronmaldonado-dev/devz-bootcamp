@@ -82,6 +82,46 @@ class minStack {
   }
 }
 
+/**
+ * FIFO - First In First Out
+ */
+class Queue {
+  constructor () {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  } 
+  pop () {
+    this.size --;
+    const item = this.first;
+    this.first = this.first.prev;
+    return item;
+  } 
+  add (data) {
+    this.size ++;
+    const node = new Node(data);
+    if (!this.first) this.first = node;
+    if (this.last) this.last.prev = node;
+    this.last = node; 
+  }
+  peek ()  {
+    return this.first;
+  }
+  isEmpty () {
+    if (!this.first && !this.last) return true;
+  }
+  toArray  () {
+    let current = this.first;
+    let arr = [];
+    while (current) {
+      arr.unshift(current.value);
+      current = current.prev;
+    }
+    return arr;
+  }
+}
+
+
 const stack = new minStack();
 stack.push(5);
 stack.push(4);
