@@ -18,7 +18,7 @@ export class Stack {
   } 
   push (data) {
     this.size ++;
-    data = Number(data);
+    data = data;
     const node = new Node(data);
     node.prev = this.top;
     this.top = node;
