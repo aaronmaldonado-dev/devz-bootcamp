@@ -4,7 +4,7 @@ const getCombinations = (n) => {
   for (let i = 0; i < maxValue; i++) {
     arr.push(i.toString(2).padStart(n, '0'));    
   }
-  const filtered = arr.filter(item => {
+  return arr.filter(item => {
     const arrItem = item.split('');
     for (let i = 0; i < n - 1; i++) {
       const sum = parseInt(arrItem[i]) + parseInt(arrItem[i + 1]);
@@ -12,7 +12,6 @@ const getCombinations = (n) => {
     }
     return true;
   });
-  return filtered;
 };
 
 console.log(getCombinations(5));

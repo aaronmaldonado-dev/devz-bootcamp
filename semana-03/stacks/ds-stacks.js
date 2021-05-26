@@ -1,4 +1,4 @@
-import {Node} from '../utils.js';
+import {Node} from './utils.js';
 
 /**
  * LIFO - Last In First Out
